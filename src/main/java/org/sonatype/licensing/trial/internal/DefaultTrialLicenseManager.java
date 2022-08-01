@@ -7,6 +7,7 @@ import com.sonatype.nexus.licensing.ext.NexusProfessionalFeature;
 import de.schlichtherle.license.LicenseContent;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.Date;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -116,15 +117,18 @@ public class DefaultTrialLicenseManager implements TrialLicenseManager {
         if (bool) {
             this.evv.trace("verifyLicense (1) param={}", key);
         }
-        this.evv.info("\n*************************************************************\n***** Nexus Repository Manager 3.23 Licensing By Zayki  *****\n*************************************************************");
-        key.setContactName("aenolife");
-        key.setContactCompany("www.aeonlife.com.cn");
-        key.setContactEmailAddress("zyjsuper@aeonlife.com.cn");
+        this.evv.info("\n*************************************************************\n***** Nexus Repository Manager 3.40.1 Licensing  *****\n*************************************************************");
+        key.setContactName("example");
+        key.setContactCompany("www.example.com/");
+        key.setContactEmailAddress("contact@example.com");
         key.setContactTelephone("+860000000000");
         key.setContactCountry("China");
         key.setEvaluation(false);
-        key.setExpirationDate(new Date(2035 - 1900, 1, 1));
-        key.setEffectiveDate(new Date(2025 - 1900, 1, 1));
+        Calendar instance = Calendar.getInstance();
+        instance.add(Calendar.YEAR, 1);
+        Date time = instance.getTime();
+        key.setExpirationDate(time);
+        key.setEffectiveDate(time);
         FeatureSet fs = new FeatureSet();
         fs.addFeature(new NexusProfessionalFeature());
         key.setFeatureSet(fs);
